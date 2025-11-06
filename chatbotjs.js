@@ -1,0 +1,176 @@
+// --- 1. Base de Conocimiento Consolidada ---
+const chatbotRespuestas = {
+    // General
+    "saludo": "¡Hola! Soy el asistente de Aprendiendo Juntos. Estoy aquí para ayudarte con cualquier duda sobre nuestros cursos, pagos, o acceso. ¿En qué puedo ayudarte hoy?",
+    "quien_eres": "Soy el chatbot de 'Aprendiendo Juntos', diseñado para responder tus preguntas frecuentes sobre inscripciones, cursos, pagos y la plataforma.",
+    "que_es_aprendiendo_juntos": "'Aprendiendo Juntos' es una plataforma de educación online que ofrece una amplia variedad de cursos especializados para tu desarrollo profesional y personal.",
+    "contacto": "Puedes contactarnos por email en **soporte@aprendiendojuntos.com** o llamarnos al **+57 310 123 4567**.",
+    
+    // Inscripción y Acceso
+    "inscribo": "Para inscribirte, selecciona el curso de tu interés en nuestro catálogo, haz clic en 'Comprar ahora' y sigue los pasos para completar el pago y tu registro.",
+    "acceso_curso": "Una vez inscrito y con el pago confirmado, recibirás un correo electrónico con tus credenciales (usuario y contraseña) para acceder a la plataforma en **app.aprendiendojuntos.com**.",
+    "contraseña": "Si olvidaste tu contraseña, haz clic en el enlace **'¿Olvidaste tu contraseña?'** en la página de inicio de sesión e introduce tu correo electrónico. Te enviaremos un enlace para restablecerla.",
+    "acceso_tiempo": "El acceso a la mayoría de nuestros cursos es **de por vida** desde la fecha de compra, para que puedas aprender a tu propio ritmo. (Consulta la descripción de cada curso por si hay excepciones).",
+    
+    // Cursos y Contenido
+    "metodologia": "Nuestros cursos son **100% online y asincrónicos**, lo que significa que puedes ver las lecciones en video y realizar las actividades en el horario que mejor te convenga.",
+    "certificado": "Sí. Al finalizar todas las lecciones y aprobar la evaluación final del curso, recibirás un **certificado digital de finalización** emitido por 'Aprendiendo Juntos'.",
+    "descargable": "Muchos de nuestros cursos incluyen **material de apoyo descargable** como PDFs, plantillas, códigos fuente y recursos adicionales.",
+    
+    // Pagos y Facturación
+    "metodos_pago": "Aceptamos pagos con **tarjeta de crédito/débito (Visa, Mastercard, Amex)**, **PayPal** y, en algunos países, **transferencia bancaria local**.",
+    "cuotas": "Actualmente, ofrecemos planes de pago a cuotas solo a través de ciertas tarjetas de crédito al momento de la compra (dependiendo de tu banco y país).",
+    "reembolso": "Ofrecemos una **garantía de satisfacción de 7 días**. Si el curso no cumple tus expectativas y no has consumido más del 20% del contenido, puedes solicitar un reembolso completo.",
+    "factura": "La factura se genera automáticamente con los datos que proporcionaste al momento de la compra y se envía a tu correo electrónico.",
+
+    // Soporte y Horarios
+    "soporte_curso": "Si tienes dudas sobre el contenido del curso, utiliza el **Foro de Preguntas y Respuestas** dentro del curso. El instructor o un tutor te responderá.",
+    "problema_tecnico": "Si tienes problemas con la plataforma (errores de acceso, video que no carga, etc.), por favor contacta a nuestro equipo de soporte técnico a través del correo **soporte@aprendiendojuntos.com**.",
+    "horario_soporte": "Nuestro equipo de soporte está disponible de **Lunes a Viernes, de 8:00 a.m. a 6:00 p.m. (GMT-5)**.",
+
+    // Base de Conocimiento Académico (Mapeado de la base de conocimiento original)
+    "cajas_personalizadas": "Son contenedores de diversos materiales, principalmente cartón, que son diseñados y fabricados a medida para satisfacer necesidades específicas de una empresa o para fines particulares.",
+    "geometria": "La geometría sirve para estudiar formas, tamaños, posiciones y propiedades del espacio. Es útil en arquitectura, diseño, arte y ingeniería.",
+    "fotosintesis": "La fotosíntesis es el proceso por el cual las plantas convierten la luz solar, agua y dióxido de carbono en glucosa (azúcar) y oxígeno.",
+    "adn": "El ADN es como el 'manual de instrucciones' de un ser vivo. Contiene la información genética que determina nuestras características.",
+    "don_quijote": "Miguel de Cervantes escribió 'Don Quijote de la Mancha'."
+};
+
+const keywordMap = {
+    // Palabras clave para mapear a las respuestas
+    'hola': 'saludo', 'buenas': 'saludo', 'que tal': 'saludo',
+    'quien eres': 'quien_eres', 'que es aprendiendo': 'que_es_aprendiendo_juntos', 
+    'contacto': 'contacto', 'llamar': 'contacto', 'email': 'contacto',
+
+    // Inscripción/Acceso
+    'inscribir': 'inscribo', 'registrar': 'inscribo', 'comprar': 'inscribo',
+    'acceso': 'acceso_curso', 'entrar': 'acceso_curso', 'plataforma': 'acceso_curso',
+    'contraseña': 'contraseña', 'olvide': 'contraseña', 'clave': 'contraseña',
+    'tiempo acceso': 'acceso_tiempo', 'vida': 'acceso_tiempo', 'duracion': 'acceso_tiempo',
+
+    // Cursos
+    'metodologia': 'metodologia', 'online': 'metodologia',
+    'certificado': 'certificado', 'diploma': 'certificado', 
+    'descargar': 'descargable', 'material': 'descargable', 
+
+    // Pagos y Facturación
+    'pago': 'metodos_pago', 'tarjeta': 'metodos_pago', 'paypal': 'metodos_pago',
+    'cuotas': 'cuotas', 'credito': 'cuotas',
+    'reembolso': 'reembolso', 'devolver': 'reembolso', 'garantia': 'reembolso',
+    'factura': 'factura', 'impuestos': 'factura',
+
+    // Soporte y Horarios
+    'soporte': 'soporte_curso', 'duda': 'soporte_curso', 'instructor': 'soporte_curso',
+    'problema tecnico': 'problema_tecnico', 'video no carga': 'problema_tecnico',
+    'horario': 'horario_soporte', 'atienden': 'horario_soporte',
+
+    // Base de Conocimiento Académico
+    'cajas': 'cajas_personalizadas', 'geometria': 'geometria', 'fotosintesis': 'fotosintesis',
+    'adn': 'adn', 'quijote': 'don_quijote', 'cervantes': 'don_quijote',
+    'adios': 'despedida', 'salir': 'despedida', 'chau': 'despedida'
+};
+
+const respuestasDespedida = [
+    "¡Hasta pronto! 👋 Sigue aprendiendo con 'Aprendiendo Juntos'.",
+    "¡Nos vemos! 😊 Que tengas un gran día.",
+    "¡Adiós! Estaré aquí si tienes más preguntas."
+];
+
+// --- 2. Funcionalidad de la Interfaz y Lógica ---
+
+const chatToggleBtn = document.getElementById('chat-toggle-btn');
+const chatContainer = document.getElementById('chatbot-container');
+const chatCloseBtn = document.getElementById('chat-close-btn');
+const chatMessages = document.getElementById('chat-messages');
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+
+// Mostrar/Ocultar el chat
+chatToggleBtn.addEventListener('click', () => {
+    const isVisible = chatContainer.style.display === 'flex';
+    chatContainer.style.display = isVisible ? 'none' : 'flex';
+    if (!isVisible && chatMessages.children.length === 0) {
+        // Saludo inicial solo la primera vez que se abre
+        setTimeout(() => sendMessageToChat(chatbotRespuestas['saludo'], 'bot'), 300);
+    }
+    if (!isVisible) {
+        userInput.focus(); // Enfocar el input al abrir
+    }
+});
+
+chatCloseBtn.addEventListener('click', () => {
+    chatContainer.style.display = 'none';
+});
+
+// Eventos para enviar mensaje
+sendBtn.addEventListener('click', processUserInput);
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        processUserInput();
+    }
+});
+
+// Función para mostrar mensajes
+function sendMessageToChat(message, sender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+    // Reemplazar **texto** con <strong>texto</strong> (negrita)
+    messageElement.innerHTML = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); 
+    chatMessages.appendChild(messageElement);
+    // Scroll automático al último mensaje
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Función de limpieza de texto (similar a la de Python)
+function cleanText(text) {
+    // Elimina acentos y caracteres especiales, convierte a minúsculas
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+               .toLowerCase()
+               .replace(/[^a-z0-9\s]/g, '')
+               .trim();
+}
+
+// Simulación de "findBestResponse" con búsqueda por palabras clave
+function findBestResponse(cleanedInput) {
+    if (cleanedInput.includes('despedida')) { // Manejar la clave de despedida
+         return respuestasDespedida[Math.floor(Math.random() * respuestasDespedida.length)];
+    }
+
+    let bestMatchKey = '';
+
+    // Buscar la palabra clave más específica
+    for (const [keyword, responseKey] of Object.entries(keywordMap)) {
+        if (cleanedInput.includes(keyword)) {
+            bestMatchKey = responseKey;
+            break; // Tomamos la primera coincidencia
+        }
+    }
+    
+    // Si encuentra una clave válida, devuelve la respuesta
+    if (bestMatchKey && bestMatchKey in chatbotRespuestas) {
+        return chatbotRespuestas[bestMatchKey];
+    }
+
+    // Respuesta por defecto
+    return "🤔 No estoy seguro de cómo responder eso. Intenta reformular tu pregunta o pregunta por temas específicos como **pagos**, **acceso** o **horario**.";
+}
+
+// Función principal de procesamiento
+function processUserInput() {
+    const input = userInput.value;
+    if (!input) return;
+
+    // 1. Mostrar mensaje del usuario
+    sendMessageToChat(input, 'user');
+    userInput.value = '';
+
+    const cleanedInput = cleanText(input);
+    
+    // 2. Obtener respuesta del bot
+    const botResponse = findBestResponse(cleanedInput);
+    
+    // 3. Mostrar mensaje del bot después de un breve retraso
+    setTimeout(() => {
+        sendMessageToChat(botResponse, 'bot');
+    }, 500);
+}

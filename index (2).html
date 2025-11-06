@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APRENDIENDO JUNTOS</title>
+    <link rel="stylesheet" href="menu.css">
+        <IMG src="libro-dorado.png"width="300px" height="300px">
+    <link rel="stylesheet" href="aprarecer.css">
+    <link rel="stylesheet" href="chatbotestilo.css">
+    <link rel="stylesheet" href="chatbot.js">
+    <link rel="stylesheet" href="bot.html">
+</head>
+<body>
+
+
+
+
+    
+</nav>
+    <header>
+        <h1>APRENDIENDO JUNTOS</h1>
+        <hr>
+        <br>
+        <a href="index (2).html" class="menu-boton">INFORMACION</a>
+        <a href="MATERIAS.HTML" class="menu-boton">MATERIAS</a>
+        <a href="COCINA.html" class="menu-boton">COCINA</a>
+        <a href="DEPORTES.html" class="menu-boton">DEPORTES</a>
+        <a href="INSTRUMENTOS.HTML" class="menu-boton">INSTRUMENTOS</a>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+        <br>
+    </footer>
+        <header class="fixed top-0 w-full bg-blue-600 text-white p-5 shadow-lg z-50">
+        <h2 class="text-2xl font-semibold">Aprendiendo Juntos</h2>
+        <p class="text-sm">Plataforma Educativa Online</p>
+    </header>
+    <main class="pt-28 text-center max-w-4xl mx-auto p-4">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Bienvenido a la Plataforma</h1>
+        <p class="text-lg text-gray-600">Para soporte o ayuda con inscripciones, pagos o cursos, haz clic en el icono flotante de chat en la esquina inferior derecha.</p>
+    </main>
+
+    <!-- 🤖 Icono Flotante del Chatbot -->
+    <button id="chat-toggle-btn" class="chat-icon" title="Abrir Chatbot de Soporte">
+        <i class="fas fa-comment-dots"></i> 
+    </button>
+
+    <!-- 💬 Contenedor Principal del Chatbot -->
+    <div id="chatbot-container">
+        <div class="chat-header">
+            <h3>🤖 Asistente Virtual</h3>
+            <button id="chat-close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <!-- Mensajes se insertarán aquí por JavaScript -->
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Enlaza el archivo de lógica JavaScript (script.js) -->
+    <script src="chatbot.js"></script>
+</body>
+</html>
