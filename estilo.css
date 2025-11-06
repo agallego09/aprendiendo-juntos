@@ -1,0 +1,195 @@
+       /* Variables y Estilos Generales */
+        :root {
+            --primary-color: #007bff; /* Azul de la marca */
+            --secondary-color: #28a745; /* Verde para acciones */
+            --chat-bg: #f7f7f7;
+            --bot-bubble: #e0f7fa;
+            --user-bubble: var(--primary-color);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Contenido de Ejemplo para un mejor layout visual */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            padding-top: 100px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            color: #343a40;
+        }
+        
+        /* --------------------------------- */
+        /* 1. Icono Flotante del Chatbot */
+        /* --------------------------------- */
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-color); /* Usamos verde para destacar el chat */
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            font-size: 26px;
+            z-index: 1000;
+            transition: transform 0.2s ease, background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-icon:hover {
+            background-color: #1e7e34;
+            transform: scale(1.1);
+        }
+
+        /* --------------------------------- */
+        /* 2. Contenedor Principal del Chatbot */
+        /* --------------------------------- */
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 480px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none; /* Inicialmente oculto */
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 600px) {
+            #chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+                height: 400px;
+            }
+        }
+
+        /* Encabezado del chat */
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .chat-header button:hover {
+            color: #ddd;
+        }
+
+        /* Cuerpo de los mensajes */
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: var(--chat-bg);
+        }
+
+        /* Estilo de los mensajes */
+        .message {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-message {
+            background-color: var(--bot-bubble);
+            align-self: flex-start;
+            margin-right: auto;
+            border-bottom-left-radius: 3px;
+        }
+
+        .user-message {
+            background-color: var(--user-bubble);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 3px;
+        }
+
+        /* Pie de página (área de input) */
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-footer input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .chat-footer input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .chat-footer button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .chat-footer button:hover {
+            background-color: #0056b3;
+        }
